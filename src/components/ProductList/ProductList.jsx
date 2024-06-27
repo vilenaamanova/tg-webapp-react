@@ -4,20 +4,20 @@ import ProductItem from "../ProductItem/ProductItem";
 import {useTelegram} from "../../hooks/useTelegram";
 
 const products = [
-    {id: '1', title: 'Джинсы', price: 5000, description: 'lalala'},
-    {id: '2', title: 'Джинсы 2', price: 3000, description: 'lalala 2'},
-    {id: '3', title: 'Джинсы 3', price: 4000, description: 'lalala 3'},
-    {id: '4', title: 'Джинсы 4', price: 6000, description: 'lalala 4'},
-    {id: '5', title: 'Джинсы 5', price: 1000, description: 'lalala 5'},
-    {id: '6', title: 'Джинсы 6', price: 9000, description: 'lalala 6'},
-    {id: '7', title: 'Джинсы 7', price: 3000, description: 'lalala 7'},
-    {id: '8', title: 'Джинсы 8', price: 2000, description: 'lalala 8'},
+    {id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые'},
+    {id: '2', title: 'Куртка', price: 12000, description: 'Зеленого цвета, теплая'},
+    {id: '3', title: 'Джинсы 2', price: 5000, description: 'Синего цвета, прямые'},
+    {id: '4', title: 'Куртка 8', price: 122, description: 'Зеленого цвета, теплая'},
+    {id: '5', title: 'Джинсы 3', price: 5000, description: 'Синего цвета, прямые'},
+    {id: '6', title: 'Куртка 7', price: 600, description: 'Зеленого цвета, теплая'},
+    {id: '7', title: 'Джинсы 4', price: 5500, description: 'Синего цвета, прямые'},
+    {id: '8', title: 'Куртка 5', price: 12000, description: 'Зеленого цвета, теплая'},
 ]
 
-const getTotalPrice = (items) => {
+const getTotalPrice = (items = []) => {
     return items.reduce((acc, item) => {
         return acc += item.price
-    }, 0);
+    }, 0)
 }
 
 const ProductList = () => {
@@ -30,7 +30,7 @@ const ProductList = () => {
             totalPrice: getTotalPrice(addedItems),
             queryId,
         }
-        fetch('https://192.168.0.132:8000/web-data', {
+        fetch('http://85.119.146.179:8000/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ const ProductList = () => {
         } else {
             tg.MainButton.show();
             tg.MainButton.setParams({
-                text: `Купить ${getTotalPrice(newItems)}`,
+                text: `Купить ${getTotalPrice(newItems)}`
             })
         }
     }
